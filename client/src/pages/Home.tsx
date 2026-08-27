@@ -113,7 +113,7 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="hero section-frame" aria-labelledby="hero-title">
+        <section className="hero full-bleed hero-animate" aria-labelledby="hero-title">
           <div className="hero-aura" aria-hidden="true" />
           <img
             className="hero-sculpture"
@@ -145,7 +145,7 @@ export default function Home() {
           </a>
         </section>
 
-        <section className="hero-image-wrap section-frame" aria-label="Creative team at work">
+        <section className="hero-image-wrap full-bleed image-animate" aria-label="Creative team at work">
           <div className="hero-image">
             <img
               src="/manus-storage/digitaal-team_3132c19c.jpg"
@@ -160,7 +160,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="signal-rail section-frame" aria-label="Creative disciplines">
+        <section className="signal-rail full-bleed rail-animate" aria-label="Creative disciplines">
           <p><span>Made for</span> brands in motion</p>
           <span>Strategy</span>
           <span>Branding</span>
@@ -169,7 +169,7 @@ export default function Home() {
           <span className="rail-mark">⟲</span>
         </section>
 
-        <section className="studio section-frame" id="studio" aria-labelledby="studio-heading">
+        <section className="studio full-bleed studio-animate" id="studio" aria-labelledby="studio-heading">
           <div className="studio-ornament" aria-hidden="true" />
           <div className="section-side"><SectionEyebrow>About the studio</SectionEyebrow></div>
           <div className="studio-body">
@@ -190,13 +190,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="statement section-frame" aria-label="Service introduction">
+        <section className="statement full-bleed statement-animate" aria-label="Service introduction">
           <p className="statement-prefix">Every brief needs</p>
           <h2><span>OUR</span> SERVICES</h2>
           <div className="statement-rule" />
         </section>
 
-        <section className="services section-frame" id="services" aria-labelledby="services-heading">
+        <section className="services full-bleed services-animate" id="services" aria-labelledby="services-heading">
           <div className="service-heading">
             <SectionEyebrow>What we bring</SectionEyebrow>
             <h2 id="services-heading">A digital presence that acts like it means it.</h2>
@@ -219,7 +219,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="work section-frame" id="work" aria-labelledby="work-heading">
+        <section className="work full-bleed work-animate" id="work" aria-labelledby="work-heading">
           <div className="work-topline">
             <SectionEyebrow>Selected work</SectionEyebrow>
             <p>Two expressions of the same idea: make the memorable choice.</p>
@@ -244,7 +244,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="method section-frame" aria-labelledby="method-heading">
+        <section className="method full-bleed method-animate" aria-labelledby="method-heading">
           <div>
             <SectionEyebrow>Working together</SectionEyebrow>
             <h2 id="method-heading">Built around an honest exchange.</h2>
@@ -256,7 +256,7 @@ export default function Home() {
           </ol>
         </section>
 
-        <section className="contact section-frame" id="contact" aria-labelledby="contact-heading">
+        <section className="contact full-bleed contact-animate" id="contact" aria-labelledby="contact-heading">
           <div className="contact-inner">
             <SectionEyebrow>Start a useful conversation</SectionEyebrow>
             <h2 id="contact-heading">Bring us the<br /><em>difficult brief.</em></h2>
@@ -268,7 +268,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer section-frame">
+      <footer className="site-footer full-bleed footer-animate">
         <a className="brand footer-brand" href="#top">
           <img className="brand-mark" src="/manus-storage/digitaal-mark_3fe22ea1.png" alt="" />
           <span>Digitaal</span>
