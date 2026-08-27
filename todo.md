@@ -20,3 +20,11 @@
 - [x] Add live field validation, helpful error feedback, and an inquiry-ready email action.
 - [x] Create a branded cinematic preloader with a safe reduced-motion path.
 - [x] Test the form’s validation and success paths on desktop and mobile.
+
+## Horizon Creative Rebrand
+
+- [x] Use the supplied Horizon Creative logo in the navigation, loading sequence, footer, and favicon.
+- [x] Replace Digitaal naming and copy references with Horizon Creative.
+- [x] Translate the site palette from acid lime to a blue, black, and white brand system.
+- [x] Retune gradients, accents, form styling, and motion to suit the new identity.
+- [x] Verify the rebrand on desktop and mobile.

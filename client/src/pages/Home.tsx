@@ -1,6 +1,6 @@
 /**
  * Design reminder: Acid Editorial Atelier — use cinematic asymmetry, oversized typography,
- * graphite materiality, and sparse voltage-lime accents inspired by the supplied reference.
+ * graphite materiality, Horizon Blue accents, and focused directional energy for Horizon Creative.
  */
 import { Button } from "@/components/ui/button";
 import {
@@ -48,13 +48,13 @@ const projects = [
     title: "Orbital Archive",
     type: "Brand identity · Web direction",
     image: "/manus-storage/digitaal-project-orbit_4195f70e.jpg",
-    alt: "A dark editorial art catalog with a lime sphere on a graphite surface",
+    alt: "A dark editorial art catalog with a blue resin sphere on a graphite surface",
   },
   {
     title: "Lumen Objects",
     type: "E-commerce · Art direction",
     image: "/manus-storage/digitaal-project-motion_b90409e4.jpg",
-    alt: "A sculptural lamp and black ceramic object lit with acid lime light",
+    alt: "A sculptural lamp and black ceramic object lit with a cool blue light",
   },
 ];
 
@@ -160,7 +160,7 @@ export default function Home() {
       `Name: ${inquiry.name}\nEmail: ${inquiry.email}\nInvestment range: ${inquiry.budget}\n\nProject notes:\n${inquiry.message}`,
     );
     setFormStatus("ready");
-    window.location.href = `mailto:hello@digitaal.studio?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@horizoncreative.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -168,11 +168,11 @@ export default function Home() {
       {loadState !== "done" && (
         <div className={`preloader ${loadState === "exiting" ? "is-exiting" : ""}`} role="status" aria-live="polite">
           <div className="preloader-topline">
-            <span>Digitaal / Studio</span>
+            <span>Horizon Creative / Studio</span>
             <span>Loading the vivid future</span>
           </div>
           <div className="preloader-core">
-            <img className="preloader-mark" src="/manus-storage/digitaal-mark_3fe22ea1.png" alt="" />
+            <img className="preloader-mark" src="/manus-storage/horizon-creative-logo_b60d3219.png" alt="" />
             <p>Making the difficult<br /><em>feel inevitable.</em></p>
           </div>
           <div className="preloader-bottomline">
@@ -182,13 +182,13 @@ export default function Home() {
         </div>
       )}
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Digitaal home">
+        <a className="brand" href="#top" aria-label="Horizon Creative home">
           <img
             className="brand-mark"
-            src="/manus-storage/digitaal-mark_3fe22ea1.png"
+            src="/manus-storage/horizon-creative-logo_b60d3219.png"
             alt=""
           />
-          <span>Digitaal</span>
+          <span>Horizon Creative</span>
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -234,10 +234,10 @@ export default function Home() {
             alt=""
           />
           <div className="hero-copy">
-            <p className="hero-kicker">Independent digital atelier / 2026</p>
+            <p className="hero-kicker">Independent creative agency / 2026</p>
             <h1 id="hero-title">
-              <span>Creative</span>
-              <span className="lime-outline">digital</span>
+              <span>Horizon</span>
+              <span className="blue-outline">creative</span>
               <span className="thin-line">agency</span>
             </h1>
           </div>
@@ -265,7 +265,7 @@ export default function Home() {
               alt="A diverse creative team gathered around a table reviewing ideas"
             />
             <div className="image-overlay" />
-            <p className="image-word">DIGITAAL</p>
+            <p className="image-word">HORIZON</p>
             <div className="image-caption">
               <span>01 / built for the vivid future</span>
               <Sparkles size={19} />
@@ -297,7 +297,7 @@ export default function Home() {
                 <p><span>03</span> Built around people</p>
               </div>
               <p className="body-copy">
-                Digitaal is a small, senior team that turns messy questions into distinct brand worlds and digital work with a clear point of view.
+                Horizon Creative is a small, senior team that turns messy questions into distinct brand worlds and digital work with a clear point of view.
               </p>
             </div>
           </div>
@@ -458,8 +458,8 @@ export default function Home() {
 
       <footer className="site-footer full-bleed footer-animate">
         <a className="brand footer-brand" href="#top">
-          <img className="brand-mark" src="/manus-storage/digitaal-mark_3fe22ea1.png" alt="" />
-          <span>Digitaal</span>
+          <img className="brand-mark" src="/manus-storage/horizon-creative-logo_b60d3219.png" alt="" />
+          <span>Horizon Creative</span>
         </a>
         <p>Independent, inquisitive, digital-first.</p>
         <div><a href="#studio">Studio</a><a href="#services">Services</a><a href="#work">Work</a></div>

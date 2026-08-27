@@ -42,3 +42,7 @@ The supplied visual reference is the ground-truth specification. The website sho
 **Wordmark & Logo:** Use a custom glossy lime interlocking geometric mark alongside a clean wordmark. The symbol should carry the identity at large scale rather than shrinking into a generic favicon.
 
 **Signature Brand Color:** **Voltage Lime — #d8ff3f**
+
+## Style Decisions
+
+The site is now rebranded for **Horizon Creative**. The supplied logo—with its black target-like circular mark and forward blue cursor—replaces the earlier abstract lime mark everywhere. The palette shifts to **Horizon Blue (#0756c6)**, black, off-white, and cool gray. Blue should lead key calls to action, outlines, focus states, form details, and motion accents. The visual character remains bold and editorial but should now suggest focus, forward direction, and competitive momentum rather than acidic experimentation.
