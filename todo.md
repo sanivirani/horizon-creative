@@ -13,3 +13,10 @@
 - [x] Add distinct hover and ambient movement for key interactive and decorative elements.
 - [x] Preserve clear readability and honor reduced-motion preferences.
 - [x] Validate the revised desktop and mobile layout using screenshots.
+
+## Contact and Load Experience Revision
+
+- [x] Replace the mail-only contact interaction with an accessible project inquiry form.
+- [x] Add live field validation, helpful error feedback, and an inquiry-ready email action.
+- [x] Create a branded cinematic preloader with a safe reduced-motion path.
+- [x] Test the form’s validation and success paths on desktop and mobile.

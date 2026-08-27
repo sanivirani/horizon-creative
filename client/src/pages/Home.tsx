@@ -14,7 +14,13 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+type InquiryField = "name" | "email" | "budget" | "message";
+
+type InquiryValues = Record<InquiryField, string>;
+
+type InquiryErrors = Partial<Record<InquiryField, string>>;
 
 const services = [
   {
@@ -61,13 +67,120 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
+const initialInquiry: InquiryValues = {
+  name: "",
+  email: "",
+  budget: "select",
+  message: "",
+};
+
+function validateInquiryField(field: InquiryField, value: string) {
+  const trimmedValue = value.trim();
+
+  if (field === "name") {
+    return trimmedValue.length >= 2 ? "" : "Please enter your name.";
+  }
+
+  if (field === "email") {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedValue)
+      ? ""
+      : "Enter a valid email address.";
+  }
+
+  if (field === "budget") {
+    return value !== "select" ? "" : "Choose an investment range.";
+  }
+
+  return trimmedValue.length >= 24
+    ? ""
+    : "Tell us a little more—at least 24 characters.";
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loadState, setLoadState] = useState<"loading" | "exiting" | "done">("loading");
+  const [inquiry, setInquiry] = useState<InquiryValues>(initialInquiry);
+  const [errors, setErrors] = useState<InquiryErrors>({});
+  const [touched, setTouched] = useState<Partial<Record<InquiryField, boolean>>>({});
+  const [formStatus, setFormStatus] = useState<"idle" | "ready">("idle");
 
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    const startExit = window.setTimeout(() => setLoadState("exiting"), 980);
+    const finishLoad = window.setTimeout(() => setLoadState("done"), 1380);
+
+    return () => {
+      window.clearTimeout(startExit);
+      window.clearTimeout(finishLoad);
+    };
+  }, []);
+
+  const updateInquiry = (field: InquiryField, value: string) => {
+    setInquiry((current) => ({ ...current, [field]: value }));
+    setFormStatus("idle");
+
+    if (touched[field]) {
+      setErrors((current) => ({
+        ...current,
+        [field]: validateInquiryField(field, value),
+      }));
+    }
+  };
+
+  const touchInquiryField = (field: InquiryField) => {
+    setTouched((current) => ({ ...current, [field]: true }));
+    setErrors((current) => ({
+      ...current,
+      [field]: validateInquiryField(field, inquiry[field]),
+    }));
+  };
+
+  const submitInquiry = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const nextErrors = (Object.keys(inquiry) as InquiryField[]).reduce<InquiryErrors>(
+      (allErrors, field) => ({ ...allErrors, [field]: validateInquiryField(field, inquiry[field]) }),
+      {},
+    );
+    const invalidField = (Object.keys(nextErrors) as InquiryField[]).find(
+      (field) => nextErrors[field],
+    );
+
+    setTouched({ name: true, email: true, budget: true, message: true });
+    setErrors(nextErrors);
+
+    if (invalidField) {
+      document.getElementById(`inquiry-${invalidField}`)?.focus();
+      return;
+    }
+
+    const subject = encodeURIComponent(`New project enquiry from ${inquiry.name}`);
+    const body = encodeURIComponent(
+      `Name: ${inquiry.name}\nEmail: ${inquiry.email}\nInvestment range: ${inquiry.budget}\n\nProject notes:\n${inquiry.message}`,
+    );
+    setFormStatus("ready");
+    window.location.href = `mailto:hello@digitaal.studio?subject=${subject}&body=${body}`;
+  };
+
   return (
-    <div className="site-shell">
+    <div className={`site-shell ${loadState === "done" ? "is-ready" : "is-loading"}`}>
+      {loadState !== "done" && (
+        <div className={`preloader ${loadState === "exiting" ? "is-exiting" : ""}`} role="status" aria-live="polite">
+          <div className="preloader-topline">
+            <span>Digitaal / Studio</span>
+            <span>Loading the vivid future</span>
+          </div>
+          <div className="preloader-core">
+            <img className="preloader-mark" src="/manus-storage/digitaal-mark_3fe22ea1.png" alt="" />
+            <p>Making the difficult<br /><em>feel inevitable.</em></p>
+          </div>
+          <div className="preloader-bottomline">
+            <div className="preloader-track"><span /></div>
+            <span>00 — 01</span>
+          </div>
+        </div>
+      )}
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Digitaal home">
           <img
@@ -260,9 +373,84 @@ export default function Home() {
           <div className="contact-inner">
             <SectionEyebrow>Start a useful conversation</SectionEyebrow>
             <h2 id="contact-heading">Bring us the<br /><em>difficult brief.</em></h2>
-            <a className="contact-cta" href="mailto:hello@digitaal.studio?subject=New%20project%20enquiry">
-              hello@digitaal.studio <ArrowUpRight size={25} />
+            <a className="contact-cta" href="#contact-form">
+              Share project details <ArrowDownRight size={25} />
             </a>
+            <form className="inquiry-form" id="contact-form" noValidate onSubmit={submitInquiry}>
+              <div className={`form-field ${touched.name && errors.name ? "has-error" : ""}`}>
+                <label htmlFor="inquiry-name">Your name</label>
+                <input
+                  id="inquiry-name"
+                  name="name"
+                  type="text"
+                  value={inquiry.name}
+                  onChange={(event) => updateInquiry("name", event.target.value)}
+                  onBlur={() => touchInquiryField("name")}
+                  autoComplete="name"
+                  aria-invalid={Boolean(touched.name && errors.name)}
+                  aria-describedby={touched.name && errors.name ? "inquiry-name-error" : undefined}
+                  placeholder="Name / studio"
+                />
+                {touched.name && errors.name && <p className="form-error" id="inquiry-name-error">{errors.name}</p>}
+              </div>
+              <div className={`form-field ${touched.email && errors.email ? "has-error" : ""}`}>
+                <label htmlFor="inquiry-email">Email address</label>
+                <input
+                  id="inquiry-email"
+                  name="email"
+                  type="email"
+                  value={inquiry.email}
+                  onChange={(event) => updateInquiry("email", event.target.value)}
+                  onBlur={() => touchInquiryField("email")}
+                  autoComplete="email"
+                  aria-invalid={Boolean(touched.email && errors.email)}
+                  aria-describedby={touched.email && errors.email ? "inquiry-email-error" : undefined}
+                  placeholder="you@company.com"
+                />
+                {touched.email && errors.email && <p className="form-error" id="inquiry-email-error">{errors.email}</p>}
+              </div>
+              <div className={`form-field ${touched.budget && errors.budget ? "has-error" : ""}`}>
+                <label htmlFor="inquiry-budget">Investment range</label>
+                <select
+                  id="inquiry-budget"
+                  name="budget"
+                  value={inquiry.budget}
+                  onChange={(event) => updateInquiry("budget", event.target.value)}
+                  onBlur={() => touchInquiryField("budget")}
+                  aria-invalid={Boolean(touched.budget && errors.budget)}
+                  aria-describedby={touched.budget && errors.budget ? "inquiry-budget-error" : undefined}
+                >
+                  <option value="select" disabled>Select a range</option>
+                  <option value="Under $10k">Under $10k</option>
+                  <option value="$10k – $25k">$10k – $25k</option>
+                  <option value="$25k – $50k">$25k – $50k</option>
+                  <option value="$50k+">$50k+</option>
+                </select>
+                {touched.budget && errors.budget && <p className="form-error" id="inquiry-budget-error">{errors.budget}</p>}
+              </div>
+              <div className={`form-field form-message ${touched.message && errors.message ? "has-error" : ""}`}>
+                <label htmlFor="inquiry-message">The interesting part</label>
+                <textarea
+                  id="inquiry-message"
+                  name="message"
+                  rows={4}
+                  value={inquiry.message}
+                  onChange={(event) => updateInquiry("message", event.target.value)}
+                  onBlur={() => touchInquiryField("message")}
+                  aria-invalid={Boolean(touched.message && errors.message)}
+                  aria-describedby={touched.message && errors.message ? "inquiry-message-error" : undefined}
+                  placeholder="What are you making, solving, or rethinking?"
+                />
+                {touched.message && errors.message && <p className="form-error" id="inquiry-message-error">{errors.message}</p>}
+              </div>
+              <div className="form-submit-row">
+                <button className="form-submit" type="submit">
+                  Open enquiry <ArrowUpRight size={19} />
+                </button>
+                <p>We’ll open your email app with the completed brief.</p>
+              </div>
+              {formStatus === "ready" && <p className="form-success" role="status">Your project brief is ready to send.</p>}
+            </form>
           </div>
           <div className="contact-orbit" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span></div>
         </section>
