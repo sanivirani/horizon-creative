@@ -28,3 +28,11 @@
 - [x] Translate the site palette from acid lime to a blue, black, and white brand system.
 - [x] Retune gradients, accents, form styling, and motion to suit the new identity.
 - [x] Verify the rebrand on desktop and mobile.
+
+## Header, Layout, and Content Editing Polish
+
+- [x] Increase the visible header and footer logo scale while preserving a compact premium rhythm.
+- [x] Normalize full-width section gutters and explicit border-box sizing across breakpoints.
+- [x] Improve mobile navigation contrast, spacing, and footer readability against the dark background.
+- [x] Add a clearly labeled content quick-edit block and inline content notes in `Home.tsx`.
+- [ ] Replace the placeholder contact email with the client's preferred inbox.

@@ -22,6 +22,18 @@ type InquiryValues = Record<InquiryField, string>;
 
 type InquiryErrors = Partial<Record<InquiryField, string>>;
 
+/**
+ * CONTENT QUICK EDITS
+ * Update this block first when tailoring the site for a real client. The services and
+ * projects arrays immediately below are also intentionally kept as plain content data.
+ */
+const siteContent = {
+  brandName: "Horizon Creative",
+  contactEmail: "hello@horizoncreative.com",
+  footerTagline: "Independent, inquisitive, digital-first.",
+} as const;
+
+// CONTENT: edit service titles, descriptions, tags, or add/remove rows here.
 const services = [
   {
     index: "01",
@@ -43,6 +55,7 @@ const services = [
   },
 ];
 
+// CONTENT: replace project names, categories, image paths, and alt text here.
 const projects = [
   {
     title: "Orbital Archive",
@@ -160,7 +173,7 @@ export default function Home() {
       `Name: ${inquiry.name}\nEmail: ${inquiry.email}\nInvestment range: ${inquiry.budget}\n\nProject notes:\n${inquiry.message}`,
     );
     setFormStatus("ready");
-    window.location.href = `mailto:hello@horizoncreative.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${siteContent.contactEmail}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -168,7 +181,7 @@ export default function Home() {
       {loadState !== "done" && (
         <div className={`preloader ${loadState === "exiting" ? "is-exiting" : ""}`} role="status" aria-live="polite">
           <div className="preloader-topline">
-            <span>Horizon Creative / Studio</span>
+            <span>{siteContent.brandName} / Studio</span>
             <span>Loading the vivid future</span>
           </div>
           <div className="preloader-core">
@@ -188,7 +201,7 @@ export default function Home() {
             src="/manus-storage/horizon-creative-logo_b60d3219.png"
             alt=""
           />
-          <span>Horizon Creative</span>
+          <span>{siteContent.brandName}</span>
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -459,9 +472,9 @@ export default function Home() {
       <footer className="site-footer full-bleed footer-animate">
         <a className="brand footer-brand" href="#top">
           <img className="brand-mark" src="/manus-storage/horizon-creative-logo_b60d3219.png" alt="" />
-          <span>Horizon Creative</span>
+          <span>{siteContent.brandName}</span>
         </a>
-        <p>Independent, inquisitive, digital-first.</p>
+        <p>{siteContent.footerTagline}</p>
         <div><a href="#studio">Studio</a><a href="#services">Services</a><a href="#work">Work</a></div>
       </footer>
     </div>
