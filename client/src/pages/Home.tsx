@@ -10,7 +10,6 @@ import {
   Menu,
   MoveUpRight,
   Plus,
-  Search,
   Sparkles,
   X,
 } from "lucide-react";
@@ -212,9 +211,6 @@ export default function Home() {
         </nav>
 
         <div className="header-actions">
-          <button className="icon-button desktop-search" type="button" aria-label="Search">
-            <Search size={18} strokeWidth={1.8} />
-          </button>
           <a className="talk-button" href="#contact">
             Let’s talk <ArrowUpRight size={16} strokeWidth={2.4} />
           </a>

@@ -265,7 +265,7 @@ section, header, footer, form { box-sizing: border-box; }
 .contact-orbit span:nth-child(2) { right: 38px; bottom: 44px; }
 .contact-orbit span:nth-child(3) { left: 135px; bottom: -3px; }
 
-.site-footer { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-top: 38px; padding-bottom: 50px; border-top: 1px solid #d8e1eb; color: #172333; background: #f7fbff; }
+.site-footer { position: relative; z-index: 21; isolation: isolate; display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-top: 38px; padding-bottom: 50px; border-top: 1px solid #cbd8e5; color: #172333; background: #f7fbff; background-image: none; box-shadow: inset 0 1px 0 #ffffff; }
 .site-footer p { margin: 0; color: #5c6b7b; font-size: 11px; }
 .site-footer > div { display: flex; gap: 22px; color: #172333; font-size: 11px; font-weight: 700; }
 .site-footer > div a { transition: color 170ms var(--ease-out); }
